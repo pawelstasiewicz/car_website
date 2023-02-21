@@ -22,27 +22,32 @@
 
 	<body>
 		<div id="wrapper">
-			<header>
-				<nav>
-					<i class="fa-solid fa-car"></i>
-					<div class="form">
-						<form>
-							<label for="sCar">Marka:</label>
-							<input type="text" name="sCar" />
-						</form>
-					</div>
-				</nav>
-				<video
-					src="./vid/pexels-taryn-elliott-5309381.mp4"
-					muted
-					loop
-					autoplay
-				></video>
-				<h1>Najlepsze samochody na sprzedaż - sprawdź naszą ofertę!</h1>
-			</header>
-			<main>
+			<nav>
+				<i class="fa-solid fa-car"></i>
+				<div class="form">
+					<form>
+						<label for="sCar">Marka:</label>
+						<input type="text" name="sCar" />
+					</form>
+				</div>
+			</nav>
+			<video
+				src="./vid/pexels-taryn-elliott-5309381.mp4"
+				muted
+				loop
+				autoplay
+			></video>
+			<h1 class="title">
+				Najlepsze samochody na sprzedaż - sprawdź naszą ofertę!
+			</h1>
+
+			<main class="main">
 				<article>
-					<img src="./img/pexels-alex-amorales-909907.jpg" alt="" />
+					<img
+						class="car1"
+						src="./img/pexels-alex-amorales-909907.jpg"
+						alt=""
+					/>
 					<h2>Audi RS4 RS4 2.9 TFSI Quattro Tiptr</h2>
 					<p>2019, 51 000km</p>
 					<p>450 KM</p>
@@ -50,7 +55,7 @@
 				</article>
 
 				<article>
-					<img src="./img/pexels-mike-b-892522.jpg" alt="" />
+					<img class="car2" src="./img/pexels-mike-b-892522.jpg" alt="" />
 					<h2>BMW Seria 2</h2>
 					<p>2021, 9 892 km</p>
 					<p>190 KM</p>
@@ -58,13 +63,55 @@
 				</article>
 
 				<article>
-					<img src="./img/pexels-toms-svilans-1005633.jpg" alt="" />
+					<img
+						class="car3"
+						src="./img/pexels-toms-svilans-1005633.jpg"
+						alt=""
+					/>
 					<h2>Renault Megane</h2>
 					<p>2017, 59 841 km</p>
 					<p>132 KM</p>
 					<p>Cena: 63 999 PLN</p>
 				</article>
 			</main>
+			<div class="main_form">
+				<h1>Wybrałeś</h1>
+				<h2>Forma finansowania:</h2>
+				<div class="select_leasing_or_cash">
+					<input type="radio" name="option" value="leasing" checked />
+					<label for="leasing">Leasing</label>
+					<input type="radio" name="option" value="cash" />
+					<label for="cash">Gotówka</label>
+				</div>
+				<h2>Dane osobowe:</h2>
+				<div class="personal_information">
+					<input type="text" placeholder="Imię i Nazwisko" />
+					<input type="text" placeholder="Miejsce odbioru" />
+				</div>
+				<div class="sending_date">
+					<h2>Data dostawy:</h2>
+					<input type="date" />
+				</div>
+				<h2>Akcesoria:</h2>
+				<div class="accessories">
+					<button>
+						<h3>Opony zimowe</h3>
+						<p>2000.00 PLN</p>
+					</button>
+					<button>
+						<h3>Dodatkowy rok gwarancji</h3>
+						<p>5000.00 PLN</p>
+					</button>
+				</div>
+				<div class="price">
+					<h2>Cena całkowita:</h2>
+					<p></p>
+				</div>
+				<div class="btn_select_or_buy">
+					<button class="return">Powrót do wyboru</button>
+					<button>Kupuję</button>
+				</div>
+			</div>
 		</div>
 
 		<script src="./app/js/script.js"></script>
