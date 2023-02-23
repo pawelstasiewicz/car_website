@@ -1,0 +1,102 @@
+@media (min-width: 568px) {
+	#wrapper {
+		.title {
+			top: 60%;
+		}
+
+		.main_form {
+			height: 150vh;
+		}
+
+		.btn_select_or_buy {
+			bottom: -20px;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	#wrapper {
+		nav {
+			padding: 20px;
+
+			i {
+				font-size: 3rem;
+			}
+
+			label {
+				font-size: 1.5rem;
+			}
+
+			input {
+				height: 30px;
+				width: 300px;
+			}
+		}
+		.title {
+			width: 60%;
+			top: 30%;
+			font-size: 1.5rem;
+		}
+
+		.main_form {
+			top: 15%;
+			height: 75vh;
+
+			.accessories {
+				display: block;
+				text-align: center;
+				button {
+					width: 70%;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	#wrapper {
+		video {
+			height: 86vh;
+			width: 100vw;
+		}
+
+		.title {
+			width: 40%;
+			top: 40%;
+		}
+
+		main {
+			padding: 10px;
+			article {
+				margin: 10px auto;
+
+				img {
+					height: 70%;
+				}
+			}
+		}
+
+		.main_form {
+			top: 0;
+			height: 100%;
+
+			.accessories {
+				button {
+					width: 50%;
+				}
+			}
+
+			.price {
+				width: 50%;
+			}
+		}
+	}
+}
+
+@media (min-width: 1440px) {
+	#wrapper {
+		.title {
+			top: 50%;
+		}
+	}
+}

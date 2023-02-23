@@ -1,8 +1,9 @@
 const form = document.querySelector('.main_form');
-const main_ = document.querySelector('.main');
+const main_ = document.querySelector('main');
 const btn_return = document.querySelector('.return');
 const car_name = document.querySelector('.car_name');
 const final_price = document.querySelector('.price p');
+const date = document.querySelector('.date');
 
 const audi = {
 	//car img
@@ -69,6 +70,15 @@ const car3_data = () => {
 const main_form = () => {
 	main_.style.display = 'none';
 	form.style.left = '0';
+
+	//Date
+	const now = new Date();
+	const future_date = new Date();
+
+	future_date.setDate(now.getDate() + 14);
+	let html_date = future_date.toLocaleDateString();
+
+	date.textContent = html_date;
 };
 
 const form_btn_return = () => {

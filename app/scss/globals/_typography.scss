@@ -1,0 +1,33 @@
+* {
+	font-size: 100%;
+}
+
+#wrapper {
+	nav {
+		i {
+			padding: 10px;
+			color: var(--Color2);
+			font-size: 1.5rem;
+		}
+	}
+
+	.title {
+		position: absolute;
+		width: 70%;
+		top: 25%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-family: 'Open Sans', sans-serif;
+		text-align: center;
+		color: var(--Color2);
+		background-color: rgb(64, 64, 64, 0.8);
+		padding: 10px;
+	}
+
+	.main_form {
+		h1 {
+			margin: 0 0 20px 0;
+			text-decoration: underline;
+		}
+	}
+}
