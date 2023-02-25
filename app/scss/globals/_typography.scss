@@ -6,22 +6,24 @@
 	nav {
 		i {
 			padding: 10px;
-			color: var(--Color2);
+			color: var(--Color3);
 			font-size: 1.5rem;
 		}
 	}
 
-	.title {
-		position: absolute;
-		width: 70%;
-		top: 25%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		font-family: 'Open Sans', sans-serif;
-		text-align: center;
-		color: var(--Color2);
-		background-color: rgb(64, 64, 64, 0.8);
-		padding: 10px;
+	.center {
+		.title {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 70%;
+			font-family: 'Open Sans', sans-serif;
+			text-align: center;
+			color: var(--Color2);
+			background-color: rgb(64, 64, 64, 0.8);
+			padding: 10px;
+		}
 	}
 
 	.main_form {
