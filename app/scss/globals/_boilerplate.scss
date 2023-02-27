@@ -5,6 +5,7 @@
 }
 
 #wrapper {
+	scroll-behavior: smooth;
 	min-height: 100vh;
 	max-width: auto;
 	background-color: var(--Color3);
@@ -43,7 +44,7 @@
 		}
 	}
 
-	main {
+	.main {
 		display: block;
 		background-color: var(--Color1);
 		width: 80vw;
@@ -69,6 +70,10 @@
 		}
 	}
 
+	.zero {
+		display: none;
+	}
+
 	.main_form {
 		position: absolute;
 		width: 100%;
@@ -78,7 +83,7 @@
 		background-color: var(--Color2);
 		z-index: 51;
 		padding: 50px 30px;
-		transition: 0.8s;
+		transition: 0.3s;
 
 		.select_leasing_or_cash,
 		.personal_information,
@@ -128,5 +133,9 @@
 				background-color: red;
 			}
 		}
+	}
+
+	.main_form.active {
+		left: 0;
 	}
 }
