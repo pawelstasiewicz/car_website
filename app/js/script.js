@@ -10,6 +10,9 @@ const date = document.querySelector('.date');
 const wheelsBtn = document.querySelector('.wheelsBtn');
 const guaranteeBtn = document.querySelector('.guaranteeBtn');
 
+let wheelsBtnValue = 0;
+let guaranteeBtnValue = 0;
+
 const main = () => {
 	prepareDOMEvents();
 };
@@ -17,6 +20,7 @@ const main = () => {
 const prepareDOMEvents = () => {
 	returnBtn.addEventListener('click', closeForm);
 	wheelsBtn.addEventListener('click', addWheelsPrice);
+	guaranteeBtn.addEventListener('click', addGuaranteePrice);
 };
 
 //After click cars img form should appear with name of chosen car and price
@@ -61,15 +65,46 @@ const closeForm = () => {
 	form.classList.remove('active');
 	setTimeout(() => {
 		selectedCar.textContent = 'Wybrałeś ';
+		guaranteeBtn.classList.remove('colorBtn');
+		wheelsBtn.classList.remove('colorBtn');
+		wheelsBtnValue = 0;
+		guaranteeBtnValue = 0;
 	}, 1000);
 };
 
-//Try to add extra price for accessories - wheels
+//Accessories - wheels button
 const addWheelsPrice = () => {
-	wheelsBtn.classList.toggle('colorBtn');
-	const newPrice = priceArea.textContent;
-	let wheelsPrice = Number(newPrice) + 2000;
-	priceArea.textContent = wheelsPrice;
+	if (wheelsBtnValue === 0) {
+		wheelsBtn.classList.add('colorBtn');
+		const newPrice = priceArea.textContent;
+		let wheelsPrice = Number(newPrice) + 2000;
+		priceArea.textContent = wheelsPrice;
+		wheelsBtnValue = 1;
+	} else if (wheelsBtnValue === 1) {
+		wheelsBtn.classList.remove('colorBtn');
+		const newPrice = priceArea.textContent;
+		let wheelsPrice = Number(newPrice) - 2000;
+		priceArea.textContent = wheelsPrice;
+		wheelsBtnValue = 0;
+	}
+};
+
+//Accessories - guarantee button
+
+const addGuaranteePrice = () => {
+	if (guaranteeBtnValue === 0) {
+		guaranteeBtn.classList.add('colorBtn');
+		const newPrice = priceArea.textContent;
+		let wheelsPrice = Number(newPrice) + 5000;
+		priceArea.textContent = wheelsPrice;
+		guaranteeBtnValue = 1;
+	} else if (guaranteeBtnValue === 1) {
+		guaranteeBtn.classList.remove('colorBtn');
+		const newPrice = priceArea.textContent;
+		let wheelsPrice = Number(newPrice) - 5000;
+		priceArea.textContent = wheelsPrice;
+		guaranteeBtnValue = 0;
+	}
 };
 
 carsImg.forEach((item) => {
