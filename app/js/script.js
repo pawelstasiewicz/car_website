@@ -9,18 +9,27 @@ const returnBtn = document.querySelector('.return');
 const date = document.querySelector('.date');
 const wheelsBtn = document.querySelector('.wheelsBtn');
 const guaranteeBtn = document.querySelector('.guaranteeBtn');
+const nameInput = document.querySelector('.nameInput');
+const placeInput = document.querySelector('.placeInput');
+const personalInformation = document.querySelector('.personal_information');
+const createErrorP1 = document.createElement('p');
+const letters = /[a-z]/i;
+const numbers = /[0-9]/i;
+const specials = /[!@#$%^&*()]/i;
 
 let wheelsBtnValue = 0;
 let guaranteeBtnValue = 0;
 
 const main = () => {
 	prepareDOMEvents();
+	informationError();
 };
 
 const prepareDOMEvents = () => {
 	returnBtn.addEventListener('click', closeForm);
 	wheelsBtn.addEventListener('click', addWheelsPrice);
 	guaranteeBtn.addEventListener('click', addGuaranteePrice);
+	nameInput.addEventListener('keyup', informationError);
 };
 
 //After click cars img form should appear with name of chosen car and price
@@ -104,6 +113,21 @@ const addGuaranteePrice = () => {
 		let wheelsPrice = Number(newPrice) - 5000;
 		priceArea.textContent = wheelsPrice;
 		guaranteeBtnValue = 0;
+	}
+};
+
+//Information while value doesn't exist - prepare
+
+const informationError = () => {
+	if (nameInput.value === '' && placeInput.value === '') {
+		createErrorP1.textContent = '';
+		personalInformation.append(createErrorP1);
+	} else if (placeInput.value === '' && nameInput.value !== '') {
+		createErrorP1.textContent = 'Musisz podać miejsce odbioru';
+		personalInformation.append(createErrorP1);
+	} else if (nameInput.value === '' && placeInput.value !== '') {
+		createErrorP1.textContent = 'Musisz podać imię i nazwisko';
+		personalInformation.append(createErrorP1);
 	}
 };
 
