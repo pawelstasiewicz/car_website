@@ -97,6 +97,10 @@ body {
 			}
 		}
 
+		.personal_information.active3 {
+			color: red;
+		}
+
 		.accessories {
 			display: flex;
 			button {
@@ -144,5 +148,39 @@ body {
 
 	.main_form.active {
 		left: 0;
+	}
+
+	.finish_screen {
+		position: absolute;
+		top: 0;
+		right: -100%;
+		width: 100vw;
+		height: 100vh;
+		background-color: var(--Color2);
+		z-index: 70;
+		transition: 0.9s;
+
+		h1 {
+			font-size: 2rem;
+			text-align: center;
+			margin: 30px auto;
+		}
+
+		.finish_car_name {
+			text-align: center;
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+
+		.last_img {
+			width: 90%;
+			height: auto;
+			padding: 10px;
+			margin: 10px auto;
+		}
+	}
+
+	.finish_screen.active2 {
+		right: 0;
 	}
 }

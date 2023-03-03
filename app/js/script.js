@@ -6,14 +6,19 @@ const selectedCar = document.querySelector('.selected_car');
 const priceArea = document.querySelector('.price p');
 const carPrice = document.querySelectorAll('.car_price');
 const returnBtn = document.querySelector('.return');
+const buyBtn = document.querySelector('.buy');
 const date = document.querySelector('.date');
 const wheelsBtn = document.querySelector('.wheelsBtn');
 const guaranteeBtn = document.querySelector('.guaranteeBtn');
+//11111
+const finishScreen = document.querySelector('.finish_screen');
+const lastImg = document.querySelector('.last_img');
+const finishCarName = document.querySelector('.finish_car_name');
+//111111
 const nameInput = document.querySelector('.nameInput');
 const placeInput = document.querySelector('.placeInput');
 const personalInformation = document.querySelector('.personal_information');
 const createErrorP1 = document.createElement('p');
-const letters = /[a-z]/i;
 const numbers = /[0-9]/i;
 const specials = /[!@#$%^&*()]/i;
 
@@ -22,14 +27,13 @@ let guaranteeBtnValue = 0;
 
 const main = () => {
 	prepareDOMEvents();
-	informationError();
 };
 
 const prepareDOMEvents = () => {
 	returnBtn.addEventListener('click', closeForm);
 	wheelsBtn.addEventListener('click', addWheelsPrice);
 	guaranteeBtn.addEventListener('click', addGuaranteePrice);
-	nameInput.addEventListener('keyup', informationError);
+	buyBtn.addEventListener('click', buyCar);
 };
 
 //After click cars img form should appear with name of chosen car and price
@@ -40,21 +44,27 @@ const clickCarsImg = (e) => {
 	}, 1000);
 	if (e.target === carsImg[0]) {
 		selectedCar.textContent += ' ' + carName[0].textContent;
+		finishCarName.textContent += carName[0].textContent;
 		priceArea.textContent = carPrice[0].textContent;
 	} else if (e.target === carsImg[1]) {
 		selectedCar.textContent += ' ' + carName[1].textContent;
+		finishCarName.textContent += carName[1].textContent;
 		priceArea.textContent = carPrice[1].textContent;
 	} else if (e.target === carsImg[2]) {
 		selectedCar.textContent += ' ' + carName[2].textContent;
+		finishCarName.textContent += carName[2].textContent;
 		priceArea.textContent = carPrice[2].textContent;
 	} else if (e.target === carsImg[3]) {
 		selectedCar.textContent += ' ' + carName[3].textContent;
+		finishCarName.textContent += carName[3].textContent;
 		priceArea.textContent = carPrice[3].textContent;
 	} else if (e.target === carsImg[4]) {
 		selectedCar.textContent += ' ' + carName[4].textContent;
+		finishCarName.textContent += carName[4].textContent;
 		priceArea.textContent = carPrice[4].textContent;
 	} else if (e.target === carsImg[5]) {
 		selectedCar.textContent += ' ' + carName[5].textContent;
+		finishCarName.textContent += carName[5].textContent;
 		priceArea.textContent = carPrice[5].textContent;
 	}
 };
@@ -76,9 +86,57 @@ const closeForm = () => {
 		selectedCar.textContent = 'Wybrałeś ';
 		guaranteeBtn.classList.remove('colorBtn');
 		wheelsBtn.classList.remove('colorBtn');
+		finishCarName.textContent = '';
 		wheelsBtnValue = 0;
 		guaranteeBtnValue = 0;
-	}, 1000);
+	}, 500);
+};
+
+//Buy car button & input name and place
+
+const buyCar = () => {
+	personalInformation.classList.add('active3');
+	if (nameInput.value === '' && placeInput.value === '') {
+		createErrorP1.textContent = 'Musisz podać wszystkie dane';
+		personalInformation.append(createErrorP1);
+	} else if (nameInput.value === '') {
+		createErrorP1.textContent = 'Musisz podać imię i nazwisko';
+		personalInformation.append(createErrorP1);
+	} else if (
+		nameInput.value.match(numbers) ||
+		placeInput.value.match(numbers)
+	) {
+		createErrorP1.textContent = 'Użyłeś liczb';
+		personalInformation.append(createErrorP1);
+	} else if (
+		nameInput.value.match(specials) ||
+		placeInput.value.match(specials)
+	) {
+		createErrorP1.textContent = 'Użyłeś niedozwolonych znaków';
+		personalInformation.append(createErrorP1);
+	} else if (placeInput.value === '') {
+		createErrorP1.textContent = 'Musisz podać miejsce odbioru';
+		personalInformation.append(createErrorP1);
+	} else {
+		finishScreen.classList.add('active2');
+		setTimeout(() => {
+			mainArea.classList.replace('zero', 'main');
+			form.classList.remove('active');
+			finishScreen.classList.remove('active2');
+			selectedCar.textContent = 'Wybrałeś ';
+			guaranteeBtn.classList.remove('colorBtn');
+			wheelsBtn.classList.remove('colorBtn');
+			wheelsBtnValue = 0;
+			guaranteeBtnValue = 0;
+		}, 5000);
+		setTimeout(() => {
+			personalInformation.classList.remove('active3');
+			createErrorP1.textContent = '';
+			finishCarName.textContent = '';
+			nameInput.value = '';
+			placeInput.value = '';
+		}, 6000);
+	}
 };
 
 //Accessories - wheels button
@@ -113,21 +171,6 @@ const addGuaranteePrice = () => {
 		let wheelsPrice = Number(newPrice) - 5000;
 		priceArea.textContent = wheelsPrice;
 		guaranteeBtnValue = 0;
-	}
-};
-
-//Information while value doesn't exist - prepare
-
-const informationError = () => {
-	if (nameInput.value === '' && placeInput.value === '') {
-		createErrorP1.textContent = '';
-		personalInformation.append(createErrorP1);
-	} else if (placeInput.value === '' && nameInput.value !== '') {
-		createErrorP1.textContent = 'Musisz podać miejsce odbioru';
-		personalInformation.append(createErrorP1);
-	} else if (nameInput.value === '' && placeInput.value !== '') {
-		createErrorP1.textContent = 'Musisz podać imię i nazwisko';
-		personalInformation.append(createErrorP1);
 	}
 };
 
