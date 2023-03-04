@@ -135,8 +135,10 @@
 					<input type="text" placeholder="Miejsce odbioru" class="placeInput" />
 				</div>
 				<div class="sending_date">
-					<h2>Data dostawy:</h2>
-					<p class="date"></p>
+					<label for="date" class="dateInfo">Data dostawy:</label>
+					<select name="date" id="date" class="date_chose">
+						<option value="14 dni">14 dni</option>
+					</select>
 				</div>
 				<h2>Akcesoria:</h2>
 				<div class="accessories">
@@ -157,12 +159,14 @@
 					<button class="return">Powrót do wyboru</button>
 					<button class="buy">Kupuję</button>
 				</div>
+				<div class="warning"></div>
 			</div>
 			<div class="finish_screen">
 				<h1>Kupiłeś:</h1>
 				<p class="finish_car_name"></p>
 				<div class="last_img"></div>
-				<p>Auto zostanie dostarczone:</p>
+				<p class="date">Auto zostanie dostarczone:</p>
+				<p class="final_price">Kwota do zapłaty:</p>
 			</div>
 		</div>
 

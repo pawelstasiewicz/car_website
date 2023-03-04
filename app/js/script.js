@@ -7,7 +7,6 @@ const priceArea = document.querySelector('.price p');
 const carPrice = document.querySelectorAll('.car_price');
 const returnBtn = document.querySelector('.return');
 const buyBtn = document.querySelector('.buy');
-const date = document.querySelector('.date');
 const wheelsBtn = document.querySelector('.wheelsBtn');
 const guaranteeBtn = document.querySelector('.guaranteeBtn');
 //11111
@@ -17,10 +16,13 @@ const finishCarName = document.querySelector('.finish_car_name');
 //111111
 const nameInput = document.querySelector('.nameInput');
 const placeInput = document.querySelector('.placeInput');
-const personalInformation = document.querySelector('.personal_information');
+const warning = document.querySelector('.warning');
 const createErrorP1 = document.createElement('p');
 const numbers = /[0-9]/i;
 const specials = /[!@#$%^&*()]/i;
+
+const date = document.querySelector('.date');
+const finalPrice = document.querySelector('.final_price');
 
 let wheelsBtnValue = 0;
 let guaranteeBtnValue = 0;
@@ -34,6 +36,16 @@ const prepareDOMEvents = () => {
 	wheelsBtn.addEventListener('click', addWheelsPrice);
 	guaranteeBtn.addEventListener('click', addGuaranteePrice);
 	buyBtn.addEventListener('click', buyCar);
+
+	//LocalStorage
+
+	nameInput.addEventListener('keyup', () => {
+		window.localStorage.setItem('name', JSON.stringify(nameInput.value));
+	});
+
+	placeInput.addEventListener('keyup', () => {
+		window.localStorage.setItem('place', JSON.stringify(placeInput.value));
+	});
 };
 
 //After click cars img form should appear with name of chosen car and price
@@ -75,8 +87,7 @@ const future_date = new Date();
 
 future_date.setDate(now.getDate() + 14);
 let html_date = future_date.toLocaleDateString();
-
-date.textContent = html_date;
+date.textContent += html_date;
 
 //Close form
 const closeForm = () => {
@@ -87,6 +98,10 @@ const closeForm = () => {
 		guaranteeBtn.classList.remove('colorBtn');
 		wheelsBtn.classList.remove('colorBtn');
 		finishCarName.textContent = '';
+		createErrorP1.textContent = '';
+		warning.textContent = '';
+		nameInput.value = '';
+		placeInput.value = '';
 		wheelsBtnValue = 0;
 		guaranteeBtnValue = 0;
 	}, 500);
@@ -95,30 +110,36 @@ const closeForm = () => {
 //Buy car button & input name and place
 
 const buyCar = () => {
-	personalInformation.classList.add('active3');
+	const nameValue = nameInput.value;
+	const nameArray = nameValue.split(' ');
+	warning.classList.add('active3');
 	if (nameInput.value === '' && placeInput.value === '') {
 		createErrorP1.textContent = 'Musisz podać wszystkie dane';
-		personalInformation.append(createErrorP1);
-	} else if (nameInput.value === '') {
+		warning.append(createErrorP1);
+	} else if (nameArray.length !== 2) {
 		createErrorP1.textContent = 'Musisz podać imię i nazwisko';
-		personalInformation.append(createErrorP1);
+		warning.append(createErrorP1);
+	} else if (nameInput.value === '') {
+		createErrorP1.textContent = 'Musisz uzupełnić imię i nazwisko';
+		warning.append(createErrorP1);
 	} else if (
 		nameInput.value.match(numbers) ||
 		placeInput.value.match(numbers)
 	) {
 		createErrorP1.textContent = 'Użyłeś liczb';
-		personalInformation.append(createErrorP1);
+		warning.append(createErrorP1);
 	} else if (
 		nameInput.value.match(specials) ||
 		placeInput.value.match(specials)
 	) {
 		createErrorP1.textContent = 'Użyłeś niedozwolonych znaków';
-		personalInformation.append(createErrorP1);
+		warning.append(createErrorP1);
 	} else if (placeInput.value === '') {
-		createErrorP1.textContent = 'Musisz podać miejsce odbioru';
-		personalInformation.append(createErrorP1);
+		createErrorP1.textContent = 'Musisz uzupełnić miejsce odbioru';
+		warning.append(createErrorP1);
 	} else {
 		finishScreen.classList.add('active2');
+		finalPrice.textContent += priceArea.textContent + ' PLN';
 		setTimeout(() => {
 			mainArea.classList.replace('zero', 'main');
 			form.classList.remove('active');
@@ -130,7 +151,8 @@ const buyCar = () => {
 			guaranteeBtnValue = 0;
 		}, 5000);
 		setTimeout(() => {
-			personalInformation.classList.remove('active3');
+			warning.classList.remove('active3');
+			finalPrice.textContent = 'Kwota do zapłaty: ';
 			createErrorP1.textContent = '';
 			finishCarName.textContent = '';
 			nameInput.value = '';
@@ -177,5 +199,15 @@ const addGuaranteePrice = () => {
 carsImg.forEach((item) => {
 	item.addEventListener('click', clickCarsImg);
 });
+
+//localStorage Load
+
+if (localStorage.getItem('name')) {
+	nameInput.value = localStorage.getItem('name');
+}
+
+if (localStorage.getItem('place')) {
+	placeInput.value = localStorage.getItem('place');
+}
 
 document.addEventListener('DOMContentLoaded', main);
