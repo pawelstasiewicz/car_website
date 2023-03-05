@@ -9,21 +9,18 @@ const returnBtn = document.querySelector('.return');
 const buyBtn = document.querySelector('.buy');
 const wheelsBtn = document.querySelector('.wheelsBtn');
 const guaranteeBtn = document.querySelector('.guaranteeBtn');
-//11111
 const finishScreen = document.querySelector('.finish_screen');
 const lastImg = document.querySelector('.last_img');
+const createImg = document.createElement('img');
 const finishCarName = document.querySelector('.finish_car_name');
-//111111
 const nameInput = document.querySelector('.nameInput');
 const placeInput = document.querySelector('.placeInput');
 const warning = document.querySelector('.warning');
 const createErrorP1 = document.createElement('p');
 const numbers = /[0-9]/i;
 const specials = /[!@#$%^&*()]/i;
-
 const date = document.querySelector('.date');
 const finalPrice = document.querySelector('.final_price');
-
 let wheelsBtnValue = 0;
 let guaranteeBtnValue = 0;
 
@@ -58,26 +55,44 @@ const clickCarsImg = (e) => {
 		selectedCar.textContent += ' ' + carName[0].textContent;
 		finishCarName.textContent += carName[0].textContent;
 		priceArea.textContent = carPrice[0].textContent;
+		createImg.src = carsImg[0].src;
+		createImg.classList.add('last_img');
+		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[1]) {
 		selectedCar.textContent += ' ' + carName[1].textContent;
 		finishCarName.textContent += carName[1].textContent;
 		priceArea.textContent = carPrice[1].textContent;
+		createImg.src = carsImg[1].src;
+		createImg.classList.add('last_img');
+		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[2]) {
 		selectedCar.textContent += ' ' + carName[2].textContent;
 		finishCarName.textContent += carName[2].textContent;
 		priceArea.textContent = carPrice[2].textContent;
+		createImg.src = carsImg[2].src;
+		createImg.classList.add('last_img');
+		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[3]) {
 		selectedCar.textContent += ' ' + carName[3].textContent;
 		finishCarName.textContent += carName[3].textContent;
 		priceArea.textContent = carPrice[3].textContent;
+		createImg.src = carsImg[3].src;
+		createImg.classList.add('last_img');
+		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[4]) {
 		selectedCar.textContent += ' ' + carName[4].textContent;
 		finishCarName.textContent += carName[4].textContent;
 		priceArea.textContent = carPrice[4].textContent;
+		createImg.src = carsImg[4].src;
+		createImg.classList.add('last_img');
+		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[5]) {
 		selectedCar.textContent += ' ' + carName[5].textContent;
 		finishCarName.textContent += carName[5].textContent;
 		priceArea.textContent = carPrice[5].textContent;
+		createImg.src = carsImg[5].src;
+		createImg.classList.add('last_img');
+		lastImg.appendChild(createImg);
 	}
 };
 
@@ -203,7 +218,8 @@ carsImg.forEach((item) => {
 //localStorage Load
 
 if (localStorage.getItem('name')) {
-	nameInput.value = localStorage.getItem('name');
+	const lsNameInput = localStorage.getItem('name');
+	nameInput.value = lsNameInput;
 }
 
 if (localStorage.getItem('place')) {

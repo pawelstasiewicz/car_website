@@ -5,18 +5,68 @@
 				width: 50%;
 				font-size: 1.3rem;
 			}
+
+			video {
+				max-width: 80vw;
+				margin: 0 auto;
+			}
 		}
 
 		.main_form {
-			height: 150vh;
+			height: 100%;
+			padding: 15px 30px;
+
+			.selected_car {
+				margin: 0 0 10px 0;
+			}
+
+			.select_leasing_or_cash,
+			.warning,
+			.personal_information,
+			.sending_date {
+				margin: 5px auto;
+
+				input {
+					margin: 2px;
+				}
+			}
+
+			.accessories {
+				button {
+					margin: 0 5px;
+					padding: 0;
+					font-size: 0.7rem;
+				}
+			}
+
+			.price {
+				padding: 0;
+				margin: 5px auto;
+				h2 {
+					font-size: 0.7rem;
+				}
+				p {
+					font-size: 0.7rem;
+				}
+			}
+
+			.btn_select_or_buy {
+				bottom: 0;
+			}
 		}
 
 		.finish_screen {
-			height: 150vh;
-		}
+			height: 100%;
 
-		.btn_select_or_buy {
-			bottom: -20px;
+			h1 {
+				font-size: 1.5rem;
+				margin: 10px auto;
+			}
+
+			.last_img {
+				width: 60%;
+				margin: 0 auto;
+			}
 		}
 	}
 }
@@ -95,24 +145,36 @@
 				display: block;
 				text-align: center;
 				button {
+					margin: 10px auto;
 					width: 70%;
+					font-size: 1rem;
 				}
 			}
 
 			.price {
+				display: block;
 				h2 {
-					padding: 30px 0 0 10px;
+					padding: 10px 0 0 10px;
+					font-size: 1.5rem;
 				}
 
 				p {
-					padding: 0 0 30px 10px;
+					padding: 0 0 10px 10px;
 					font-size: 1.5rem;
+				}
+			}
+
+			.btn_select_or_buy {
+				bottom: 24%;
+
+				button {
+					padding: 10px 15px;
 				}
 			}
 		}
 
 		.finish_screen {
-			height: 120vh;
+			height: 100vh;
 
 			h1 {
 				font-size: 4rem;
@@ -122,12 +184,18 @@
 				font-size: 3rem;
 			}
 
+			.last_img {
+				margin: 50px auto;
+				width: 85%;
+			}
+
 			.date {
 				font-size: 2rem;
 			}
 
 			.final_price {
 				font-size: 2rem;
+				padding: 20px;
 			}
 		}
 	}
@@ -163,21 +231,33 @@
 
 		.main_form {
 			top: 0;
-			height: 120vh;
+			height: 100vh;
 
 			.accessories {
+				display: flex;
 				button {
+					margin: 0 20px;
 					width: 50%;
 				}
 			}
 
 			.price {
 				width: 50%;
+				height: auto;
+			}
+
+			.btn_select_or_buy {
+				bottom: 10%;
 			}
 		}
 
 		.finish_screen {
-			height: 120vh;
+			height: 100vh;
+
+			.last_img {
+				margin: 30px auto;
+				width: 70%;
+			}
 		}
 	}
 }
@@ -193,6 +273,18 @@
 
 			.accessories {
 				display: flex;
+			}
+
+			.btn_select_or_buy {
+				bottom: 15%;
+			}
+		}
+
+		.finish_screen {
+			height: 100vh;
+
+			.last_img {
+				margin: 10px auto;
 			}
 		}
 	}
