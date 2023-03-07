@@ -9,6 +9,11 @@
 			color: var(--Color3);
 			font-size: 1.5rem;
 		}
+
+		label {
+			font-size: 0.9rem;
+			color: var(--Color2);
+		}
 	}
 
 	.center {
@@ -30,6 +35,40 @@
 		h1 {
 			margin: 0 0 20px 0;
 			text-decoration: underline;
+		}
+
+		.sending_date {
+			.dateInfo {
+				font-weight: bold;
+			}
+		}
+
+		.warning.active3 {
+			color: red;
+			text-align: center;
+		}
+	}
+
+	.finish_screen {
+		h1 {
+			font-size: 2rem;
+			text-align: center;
+			margin: 30px auto;
+		}
+
+		.finish_car_name {
+			text-align: center;
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+
+		.date,
+		.pay_form,
+		.final_price {
+			text-align: center;
+			font-size: 1rem;
+			font-weight: bold;
+			margin: 10px;
 		}
 	}
 }

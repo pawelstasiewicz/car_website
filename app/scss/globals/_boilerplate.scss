@@ -27,11 +27,6 @@ body {
 		box-shadow: 0px 10px 20px 0px var(--Color4);
 		z-index: 50;
 
-		label {
-			font-size: 0.9rem;
-			color: var(--Color2);
-		}
-
 		input {
 			border: none;
 		}
@@ -70,6 +65,9 @@ body {
 				filter: brightness(0.7);
 			}
 		}
+		.active_brand {
+			display: none;
+		}
 	}
 
 	.zero {
@@ -96,15 +94,6 @@ body {
 			input {
 				margin: 5px;
 			}
-
-			.dateInfo {
-				font-weight: bold;
-			}
-		}
-
-		.warning.active3 {
-			color: red;
-			text-align: center;
 		}
 
 		.accessories {
@@ -132,14 +121,10 @@ body {
 		.btn_select_or_buy {
 			width: 100%;
 			display: flex;
-			position: absolute;
-			bottom: 20px;
-			left: 50%;
-			transform: translate(-50%, -50%);
 			justify-content: center;
 
 			button {
-				margin: 0 5px;
+				margin: 10px auto 0 auto;
 				padding: 5px;
 				border: none;
 				border-radius: 5px;
@@ -166,18 +151,6 @@ body {
 		z-index: 70;
 		transition: 0.9s;
 
-		h1 {
-			font-size: 2rem;
-			text-align: center;
-			margin: 30px auto;
-		}
-
-		.finish_car_name {
-			text-align: center;
-			font-size: 1.5rem;
-			font-weight: bold;
-		}
-
 		.last_img {
 			display: flex;
 			justify-content: center;
@@ -185,18 +158,6 @@ body {
 			height: auto;
 			padding: 10px;
 			margin: 30px auto;
-		}
-
-		.date {
-			text-align: center;
-			font-size: 1rem;
-			font-weight: bold;
-		}
-
-		.final_price {
-			text-align: center;
-			font-size: 1rem;
-			font-weight: bold;
 		}
 	}
 

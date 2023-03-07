@@ -21,6 +21,11 @@ const numbers = /[0-9]/i;
 const specials = /[!@#$%^&*()]/i;
 const date = document.querySelector('.date');
 const finalPrice = document.querySelector('.final_price');
+const leasingRadio = document.querySelector('#leasing_radio');
+const cashRadio = document.querySelector('#cash_radio');
+const payForm = document.querySelector('.pay_form');
+const brand = document.querySelector('.brand');
+const carArea = document.querySelectorAll('.car_area');
 let wheelsBtnValue = 0;
 let guaranteeBtnValue = 0;
 
@@ -43,6 +48,9 @@ const prepareDOMEvents = () => {
 	placeInput.addEventListener('keyup', () => {
 		window.localStorage.setItem('place', JSON.stringify(placeInput.value));
 	});
+
+	//brand
+	brand.addEventListener('keyup', brandChoice);
 };
 
 //After click cars img form should appear with name of chosen car and price
@@ -126,12 +134,13 @@ const closeForm = () => {
 
 const buyCar = () => {
 	const nameValue = nameInput.value;
-	const nameArray = nameValue.split(' ');
+	const nameArray = nameValue.trim().split(' ');
+
 	warning.classList.add('active3');
 	if (nameInput.value === '' && placeInput.value === '') {
 		createErrorP1.textContent = 'Musisz podać wszystkie dane';
 		warning.append(createErrorP1);
-	} else if (nameArray.length !== 2) {
+	} else if (nameArray.length <= 1 || nameArray.length > 2) {
 		createErrorP1.textContent = 'Musisz podać imię i nazwisko';
 		warning.append(createErrorP1);
 	} else if (nameInput.value === '') {
@@ -155,6 +164,11 @@ const buyCar = () => {
 	} else {
 		finishScreen.classList.add('active2');
 		finalPrice.textContent += priceArea.textContent + ' PLN';
+		if (leasingRadio.checked) {
+			payForm.textContent += 'Leasing';
+		} else if (cashRadio.checked) {
+			payForm.textContent += 'Gotówka';
+		}
 		setTimeout(() => {
 			mainArea.classList.replace('zero', 'main');
 			form.classList.remove('active');
@@ -168,6 +182,7 @@ const buyCar = () => {
 		setTimeout(() => {
 			warning.classList.remove('active3');
 			finalPrice.textContent = 'Kwota do zapłaty: ';
+			payForm.textContent = 'Forma zapłaty: ';
 			createErrorP1.textContent = '';
 			finishCarName.textContent = '';
 			nameInput.value = '';
@@ -225,5 +240,33 @@ if (localStorage.getItem('name')) {
 if (localStorage.getItem('place')) {
 	placeInput.value = localStorage.getItem('place');
 }
+
+//Select brand
+
+const brandChoice = () => {
+	if (brand.value === 'Audi' || brand.value === 'audi') {
+		carArea[1].classList.add('active_brand');
+		carArea[2].classList.add('active_brand');
+		carArea[4].classList.add('active_brand');
+		carArea[5].classList.add('active_brand');
+	} else if (brand.value === 'BMW' || brand.value === 'bmw') {
+		carArea[0].classList.add('active_brand');
+		carArea[2].classList.add('active_brand');
+		carArea[3].classList.add('active_brand');
+		carArea[4].classList.add('active_brand');
+	} else if (brand.value === 'Renault' || brand.value === 'renault') {
+		carArea[0].classList.add('active_brand');
+		carArea[1].classList.add('active_brand');
+		carArea[3].classList.add('active_brand');
+		carArea[5].classList.add('active_brand');
+	} else {
+		carArea[0].classList.remove('active_brand');
+		carArea[1].classList.remove('active_brand');
+		carArea[2].classList.remove('active_brand');
+		carArea[3].classList.remove('active_brand');
+		carArea[4].classList.remove('active_brand');
+		carArea[5].classList.remove('active_brand');
+	}
+};
 
 document.addEventListener('DOMContentLoaded', main);

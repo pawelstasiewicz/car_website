@@ -27,7 +27,7 @@
 				<div class="form">
 					<form>
 						<label for="sCar">Marka:</label>
-						<input type="text" name="sCar" />
+						<input type="text" name="sCar" class="brand" />
 					</form>
 				</div>
 			</nav>
@@ -44,7 +44,7 @@
 			</div>
 
 			<main class="main">
-				<article>
+				<article class="car_area">
 					<a href="#up">
 						<img
 							class="cars"
@@ -58,7 +58,7 @@
 					<p>Cena: <span class="car_price">362900</span> PLN</p>
 				</article>
 
-				<article>
+				<article class="car_area">
 					<a href="#up">
 						<img
 							class="cars"
@@ -72,7 +72,7 @@
 					<p>Cena: <span class="car_price">186900</span> PLN</p>
 				</article>
 
-				<article>
+				<article class="car_area">
 					<a href="#up">
 						<img
 							class="cars"
@@ -86,7 +86,7 @@
 					<p>Cena: <span class="car_price">63999</span> PLN</p>
 				</article>
 
-				<article>
+				<article class="car_area">
 					<a href="#up">
 						<img
 							class="cars"
@@ -100,7 +100,7 @@
 					<p>Cena: <span class="car_price">119000</span> PLN</p>
 				</article>
 
-				<article>
+				<article class="car_area">
 					<a href="#up">
 						<img
 							class="cars"
@@ -114,7 +114,7 @@
 					<p>Cena: <span class="car_price">9990</span> PLN</p>
 				</article>
 
-				<article>
+				<article class="car_area">
 					<a href="#up">
 						<img
 							class="cars"
@@ -132,9 +132,15 @@
 				<h1 class="selected_car">Wybrałeś</h1>
 				<h2>Forma finansowania:</h2>
 				<div class="select_leasing_or_cash">
-					<input type="radio" name="option" value="leasing" checked />
+					<input
+						type="radio"
+						name="option"
+						value="leasing"
+						checked
+						id="leasing_radio"
+					/>
 					<label for="leasing">Leasing</label>
-					<input type="radio" name="option" value="cash" />
+					<input type="radio" name="option" value="cash" id="cash_radio" />
 					<label for="cash">Gotówka</label>
 				</div>
 				<h2>Dane osobowe:</h2>
@@ -174,6 +180,7 @@
 				<p class="finish_car_name"></p>
 				<div class="last_img"></div>
 				<p class="date">Auto zostanie dostarczone:</p>
+				<p class="pay_form">Forma zapłaty:</p>
 				<p class="final_price">Kwota do zapłaty:</p>
 			</div>
 		</div>

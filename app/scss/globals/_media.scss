@@ -49,10 +49,6 @@
 					font-size: 0.7rem;
 				}
 			}
-
-			.btn_select_or_buy {
-				bottom: 0;
-			}
 		}
 
 		.finish_screen {
@@ -66,6 +62,12 @@
 			.last_img {
 				width: 60%;
 				margin: 0 auto;
+			}
+
+			.date,
+			.pay_form,
+			.final_price {
+				margin: 5px;
 			}
 		}
 	}
@@ -193,9 +195,14 @@
 				font-size: 2rem;
 			}
 
+			.pay_form {
+				font-size: 2rem;
+				padding: 10px 0 0 0;
+			}
+
 			.final_price {
 				font-size: 2rem;
-				padding: 20px;
+				padding: 10px;
 			}
 		}
 	}
@@ -255,7 +262,7 @@
 			height: 100vh;
 
 			.last_img {
-				margin: 30px auto;
+				margin: 20px auto;
 				width: 70%;
 			}
 		}
@@ -284,7 +291,7 @@
 			height: 100vh;
 
 			.last_img {
-				margin: 10px auto;
+				margin: 5px auto;
 			}
 		}
 	}
