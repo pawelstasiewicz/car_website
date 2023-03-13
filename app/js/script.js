@@ -54,49 +54,67 @@ const prepareDOMEvents = () => {
 };
 
 //After click cars img form should appear with name of chosen car and price
+
+let chosenCar;
+
 const clickCarsImg = (e) => {
 	form.classList.add('active');
 	setTimeout(() => {
 		mainArea.classList.replace('main', 'zero');
 	}, 1000);
+
 	if (e.target === carsImg[0]) {
-		selectedCar.textContent += ' ' + carName[0].textContent;
-		finishCarName.textContent += carName[0].textContent;
+		chosenCar = carName[0].textContent;
+	} else if (e.target === carsImg[1]) {
+		chosenCar = carName[1].textContent;
+	} else if (e.target === carsImg[2]) {
+		chosenCar = carName[2].textContent;
+	} else if (e.target === carsImg[3]) {
+		chosenCar = carName[3].textContent;
+	} else if (e.target === carsImg[4]) {
+		chosenCar = carName[4].textContent;
+	} else if (e.target === carsImg[5]) {
+		chosenCar = carName[5].textContent;
+	}
+
+	if (e.target === carsImg[0]) {
+		selectedCar.textContent += ' ' + chosenCar;
+		finishCarName.textContent += chosenCar;
 		priceArea.textContent = carPrice[0].textContent;
 		createImg.src = carsImg[0].src;
 		createImg.classList.add('last_img');
 		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[1]) {
-		selectedCar.textContent += ' ' + carName[1].textContent;
-		finishCarName.textContent += carName[1].textContent;
+		selectedCar.textContent += ' ' + chosenCar;
+		finishCarName.textContent += chosenCar;
 		priceArea.textContent = carPrice[1].textContent;
 		createImg.src = carsImg[1].src;
 		createImg.classList.add('last_img');
 		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[2]) {
-		selectedCar.textContent += ' ' + carName[2].textContent;
-		finishCarName.textContent += carName[2].textContent;
+		selectedCar.textContent += ' ' + chosenCar;
+		finishCarName.textContent += chosenCar;
 		priceArea.textContent = carPrice[2].textContent;
 		createImg.src = carsImg[2].src;
 		createImg.classList.add('last_img');
 		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[3]) {
-		selectedCar.textContent += ' ' + carName[3].textContent;
-		finishCarName.textContent += carName[3].textContent;
+		selectedCar.textContent += ' ' + chosenCar;
+		finishCarName.textContent += chosenCar;
 		priceArea.textContent = carPrice[3].textContent;
 		createImg.src = carsImg[3].src;
 		createImg.classList.add('last_img');
 		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[4]) {
-		selectedCar.textContent += ' ' + carName[4].textContent;
-		finishCarName.textContent += carName[4].textContent;
+		selectedCar.textContent += ' ' + chosenCar;
+		finishCarName.textContent += chosenCar;
 		priceArea.textContent = carPrice[4].textContent;
 		createImg.src = carsImg[4].src;
 		createImg.classList.add('last_img');
 		lastImg.appendChild(createImg);
 	} else if (e.target === carsImg[5]) {
-		selectedCar.textContent += ' ' + carName[5].textContent;
-		finishCarName.textContent += carName[5].textContent;
+		selectedCar.textContent += ' ' + chosenCar;
+		finishCarName.textContent += chosenCar;
 		priceArea.textContent = carPrice[5].textContent;
 		createImg.src = carsImg[5].src;
 		createImg.classList.add('last_img');
@@ -104,13 +122,24 @@ const clickCarsImg = (e) => {
 	}
 };
 
-//Date when car can be taken(2 weeks after)
-const now = new Date();
-const future_date = new Date();
+//Date when car can be taken
 
-future_date.setDate(now.getDate() + 14);
-let html_date = future_date.toLocaleDateString();
-date.textContent += html_date;
+const chosenDate = document.getElementById('date');
+const now = new Date();
+const futureDate = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+
+const nowStr = now.toISOString().slice(0, 10);
+const futureDateStr = futureDate.toISOString().slice(0, 10);
+chosenDate.setAttribute('min', nowStr);
+chosenDate.setAttribute('max', futureDateStr);
+
+chosenDate.addEventListener('change', () => {
+	const dateValue = chosenDate.value;
+
+	window.localStorage.setItem('date', JSON.stringify(chosenDate.value));
+
+	date.textContent += dateValue;
+});
 
 //Close form
 const closeForm = () => {
@@ -241,32 +270,25 @@ if (localStorage.getItem('place')) {
 	placeInput.value = localStorage.getItem('place');
 }
 
+if (localStorage.getItem('date')) {
+	const saveChosenDate = JSON.parse(localStorage.getItem('date'));
+	chosenDate.value = saveChosenDate;
+}
+
 //Select brand
 
 const brandChoice = () => {
-	if (brand.value === 'Audi' || brand.value === 'audi') {
-		carArea[1].classList.add('active_brand');
-		carArea[2].classList.add('active_brand');
-		carArea[4].classList.add('active_brand');
-		carArea[5].classList.add('active_brand');
-	} else if (brand.value === 'BMW' || brand.value === 'bmw') {
-		carArea[0].classList.add('active_brand');
-		carArea[2].classList.add('active_brand');
-		carArea[3].classList.add('active_brand');
-		carArea[4].classList.add('active_brand');
-	} else if (brand.value === 'Renault' || brand.value === 'renault') {
-		carArea[0].classList.add('active_brand');
-		carArea[1].classList.add('active_brand');
-		carArea[3].classList.add('active_brand');
-		carArea[5].classList.add('active_brand');
-	} else {
-		carArea[0].classList.remove('active_brand');
-		carArea[1].classList.remove('active_brand');
-		carArea[2].classList.remove('active_brand');
-		carArea[3].classList.remove('active_brand');
-		carArea[4].classList.remove('active_brand');
-		carArea[5].classList.remove('active_brand');
-	}
+	const newBrand = brand.value.toLowerCase();
+
+	carArea.forEach((car) => {
+		const writingBrand = car.dataset.brand.toLowerCase();
+
+		if (writingBrand.includes(newBrand)) {
+			car.style.display = 'block';
+		} else {
+			car.style.display = 'none';
+		}
+	});
 };
 
 document.addEventListener('DOMContentLoaded', main);
