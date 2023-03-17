@@ -57,66 +57,24 @@ const prepareDOMEvents = () => {
 
 let chosenCar;
 
-const clickCarsImg = (e) => {
+const clickArea = (e) => {
 	form.classList.add('active');
 	setTimeout(() => {
 		mainArea.classList.replace('main', 'zero');
 	}, 1000);
 
-	if (e.target === carsImg[0]) {
-		chosenCar = carName[0].textContent;
-	} else if (e.target === carsImg[1]) {
-		chosenCar = carName[1].textContent;
-	} else if (e.target === carsImg[2]) {
-		chosenCar = carName[2].textContent;
-	} else if (e.target === carsImg[3]) {
-		chosenCar = carName[3].textContent;
-	} else if (e.target === carsImg[4]) {
-		chosenCar = carName[4].textContent;
-	} else if (e.target === carsImg[5]) {
-		chosenCar = carName[5].textContent;
-	}
+	const $clickedCarTile = e.currentTarget;
 
-	if (e.target === carsImg[0]) {
+	const chosenCar = $clickedCarTile.querySelector('.car_name').textContent;
+	const selectedCarPrice =
+		$clickedCarTile.querySelector('.car_price').textContent;
+	const selectedCarImg = $clickedCarTile.querySelector('.cars');
+
+	if ($clickedCarTile) {
 		selectedCar.textContent += ' ' + chosenCar;
 		finishCarName.textContent += chosenCar;
-		priceArea.textContent = carPrice[0].textContent;
-		createImg.src = carsImg[0].src;
-		createImg.classList.add('last_img');
-		lastImg.appendChild(createImg);
-	} else if (e.target === carsImg[1]) {
-		selectedCar.textContent += ' ' + chosenCar;
-		finishCarName.textContent += chosenCar;
-		priceArea.textContent = carPrice[1].textContent;
-		createImg.src = carsImg[1].src;
-		createImg.classList.add('last_img');
-		lastImg.appendChild(createImg);
-	} else if (e.target === carsImg[2]) {
-		selectedCar.textContent += ' ' + chosenCar;
-		finishCarName.textContent += chosenCar;
-		priceArea.textContent = carPrice[2].textContent;
-		createImg.src = carsImg[2].src;
-		createImg.classList.add('last_img');
-		lastImg.appendChild(createImg);
-	} else if (e.target === carsImg[3]) {
-		selectedCar.textContent += ' ' + chosenCar;
-		finishCarName.textContent += chosenCar;
-		priceArea.textContent = carPrice[3].textContent;
-		createImg.src = carsImg[3].src;
-		createImg.classList.add('last_img');
-		lastImg.appendChild(createImg);
-	} else if (e.target === carsImg[4]) {
-		selectedCar.textContent += ' ' + chosenCar;
-		finishCarName.textContent += chosenCar;
-		priceArea.textContent = carPrice[4].textContent;
-		createImg.src = carsImg[4].src;
-		createImg.classList.add('last_img');
-		lastImg.appendChild(createImg);
-	} else if (e.target === carsImg[5]) {
-		selectedCar.textContent += ' ' + chosenCar;
-		finishCarName.textContent += chosenCar;
-		priceArea.textContent = carPrice[5].textContent;
-		createImg.src = carsImg[5].src;
+		priceArea.textContent = selectedCarPrice;
+		createImg.src = selectedCarImg.src;
 		createImg.classList.add('last_img');
 		lastImg.appendChild(createImg);
 	}
@@ -133,12 +91,16 @@ const futureDateStr = futureDate.toISOString().slice(0, 10);
 chosenDate.setAttribute('min', nowStr);
 chosenDate.setAttribute('max', futureDateStr);
 
+date.textContent = `Auto zostanie dostarczone: ${now
+	.toISOString()
+	.slice(0, 10)}`;
+
 chosenDate.addEventListener('change', () => {
 	const dateValue = chosenDate.value;
 
 	window.localStorage.setItem('date', JSON.stringify(chosenDate.value));
 
-	date.textContent += dateValue;
+	date.textContent = `Auto zostanie dostarczone: ${dateValue}`;
 });
 
 //Close form
@@ -168,30 +130,45 @@ const buyCar = () => {
 	warning.classList.add('active3');
 	if (nameInput.value === '' && placeInput.value === '') {
 		createErrorP1.textContent = 'Musisz podać wszystkie dane';
+		nameInput.classList.add('red');
+		placeInput.classList.add('red');
 		warning.append(createErrorP1);
 	} else if (nameArray.length <= 1 || nameArray.length > 2) {
 		createErrorP1.textContent = 'Musisz podać imię i nazwisko';
+		nameInput.classList.add('red');
+		placeInput.classList.remove('red');
 		warning.append(createErrorP1);
 	} else if (nameInput.value === '') {
 		createErrorP1.textContent = 'Musisz uzupełnić imię i nazwisko';
+		nameInput.classList.add('red');
+		placeInput.classList.remove('red');
 		warning.append(createErrorP1);
 	} else if (
 		nameInput.value.match(numbers) ||
 		placeInput.value.match(numbers)
 	) {
 		createErrorP1.textContent = 'Użyłeś liczb';
+		nameInput.classList.add('red');
+		placeInput.classList.add('red');
 		warning.append(createErrorP1);
 	} else if (
 		nameInput.value.match(specials) ||
 		placeInput.value.match(specials)
 	) {
 		createErrorP1.textContent = 'Użyłeś niedozwolonych znaków';
+		nameInput.classList.add('red');
+		placeInput.classList.add('red');
 		warning.append(createErrorP1);
 	} else if (placeInput.value === '') {
 		createErrorP1.textContent = 'Musisz uzupełnić miejsce odbioru';
+		nameInput.classList.remove('red');
+		placeInput.classList.add('red');
 		warning.append(createErrorP1);
 	} else {
 		finishScreen.classList.add('active2');
+		nameInput.classList.remove('red');
+		placeInput.classList.remove('red');
+
 		finalPrice.textContent += priceArea.textContent + ' PLN';
 		if (leasingRadio.checked) {
 			payForm.textContent += 'Leasing';
@@ -255,19 +232,19 @@ const addGuaranteePrice = () => {
 	}
 };
 
-carsImg.forEach((item) => {
-	item.addEventListener('click', clickCarsImg);
+carArea.forEach((item) => {
+	item.addEventListener('click', clickArea);
 });
 
 //localStorage Load
 
 if (localStorage.getItem('name')) {
-	const lsNameInput = localStorage.getItem('name');
+	const lsNameInput = localStorage.getItem('name').slice(1, length - 1);
 	nameInput.value = lsNameInput;
 }
 
 if (localStorage.getItem('place')) {
-	placeInput.value = localStorage.getItem('place');
+	placeInput.value = localStorage.getItem('place').slice(1, length - 1);
 }
 
 if (localStorage.getItem('date')) {
