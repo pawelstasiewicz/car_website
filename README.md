@@ -17,4 +17,4 @@ Project is created with:
 
 ## Setup
 
-Here is a working site: https://magnificent-puppy-ec7646.netlify.app
+Here is a working site: https://fascinating-conkies-d52cf7.netlify.app
